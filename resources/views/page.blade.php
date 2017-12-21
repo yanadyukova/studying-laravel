@@ -11,10 +11,10 @@
     <title>Jumbotron Template for Bootstrap</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{ asset('/css/bootstrap.min.css') }}" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="/css/jumbotron.css" rel="stylesheet">
+    <link href="{{ asset('/css/jumbotron.css') }}" rel="stylesheet">
 
     <!-- Just for debugging purposes. Don't actually copy this line! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -56,8 +56,8 @@
 <!-- Main jumbotron for a primary marketing message or call to action -->
 <div class="jumbotron">
     <div class="container">
-        <h1>Hello, world!</h1>
-        <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
+        <h1>{{ $header }}</h1>
+        <p>{{ $message }}</p>
         <p><a class="btn btn-primary btn-lg" role="button">Learn more &raquo;</a></p>
     </div>
 </div>
