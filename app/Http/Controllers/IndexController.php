@@ -2,13 +2,35 @@
 
 namespace App\Http\Controllers;
 
+use App\Article;
 use Illuminate\Http\Request;
 
 class IndexController extends Controller
 {
+    protected $message;
+    protected $header;
+
+    public function __construct()
+    {
+        $this->header = 'Hello, world!';
+        $this->message = 'This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.';
+    }
+
+
     public function index() {
-        $header = 'Hello world!';
-        $message = 'This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.';
-        return view('page')->with(['message'=>$message, 'header'=>$header]);
+        $articles = Article::select(['id', 'title', 'description'])->get();
+//        dump($articles);
+        return view('page')->with(['message'=>$this->message,
+            'header'=>$this->header,
+            'articles' => $articles]);
+    }
+
+    public function show($id) {
+//        $article = Article::find($id);
+        $article = Article::select(['id', 'title', 'text'])->where('id', $id)->first();
+//        dump($article);
+        return view('article-content')->with(['message'=>$this->message,
+            'header'=>$this->header,
+            'article' => $article]);
     }
 }
