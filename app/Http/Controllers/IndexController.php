@@ -33,4 +33,27 @@ class IndexController extends Controller
             'header'=>$this->header,
             'article' => $article]);
     }
+
+    public function add() {
+        return view('add-content')->with(['message'=>$this->message,
+                                                'header'=>$this->header]);
+    }
+
+    public function store(Request $request) {
+        $this->validate($request, [
+            'title' => 'required|max:255',
+            'alias' => 'required|unique:articles',
+            'text' => 'required'
+        ]);
+
+        $data = $request->all();
+
+        $article = new Article();
+        $article->fill($data);
+
+        $article->save();
+        return view('article-content')->with(['message'=>$this->message,
+            'header'=>$this->header,
+            'article' => $article]);
+    }
 }

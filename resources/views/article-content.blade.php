@@ -14,14 +14,18 @@
         <!-- Example row of columns -->
         <div class="row">
 
-
-
+            @if ($article)
+                <div class="col-md-9">
+                    <h2>{{ $article->title }}</h2>
+                    <div>{!! $article->text !!}</div>
+                </div>
+            @endif
         </div>
 
         <hr>
 
         <footer>
-            <p>&copy; Company 2014</p>
+            <p>&copy; Company 2017</p>
         </footer>
     </div> <!-- /container -->
 @endsection
